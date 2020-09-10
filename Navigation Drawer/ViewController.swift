@@ -27,6 +27,9 @@ class ViewController: UIViewController , UITableViewDelegate,UITableViewDataSour
     
     var isSideviewOpen:  Bool = false
     
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            return arraydata.count
     }
@@ -38,6 +41,41 @@ class ViewController: UIViewController , UITableViewDelegate,UITableViewDataSour
         cell.img.image = arrayimg[indexPath.row]
         cell.lbl.text = arraydata[indexPath.row]
         return cell
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0{
+            
+            
+            sidebar.isHidden = true
+            sideview.isHidden = true
+            isSideviewOpen = false
+            sideview.frame = CGRect.init(x: 0, y: 88, width: 0, height: 808)
+            sidebar.frame = CGRect.init(x: 0, y: 0, width: 0, height: 808)
+            UIView.setAnimationDuration(0.5)
+            UIView.setAnimationDelegate(self)
+            UIView.beginAnimations("TableAnimation", context: nil)
+            
+            sideview.frame = CGRect.init(x: 0, y: 88, width: 240, height: 808)
+            sidebar.frame = CGRect.init(x: 0, y: 0, width: 240, height: 808)
+            UIView.commitAnimations()
+//            let home : HomeViewController =
+//            self.storyboard?.instantiateViewController(withIdentifier: "home") as!
+//            HomeViewController
+//
+//            self.navigationController?.pushViewController(home, animated: true)
+            
+        }else if indexPath.row == 1{
+            let Email : EmailViewController =
+            self.storyboard?.instantiateViewController(withIdentifier: "Email") as!
+            EmailViewController
+            
+            self.navigationController?.pushViewController(Email, animated: true)
+            
+            
+        }
     }
     
     override func viewDidLoad() {
